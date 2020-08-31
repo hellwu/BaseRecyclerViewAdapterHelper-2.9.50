@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="network_err">Simulation network error</string>
+    <string name="empty_network_error">Network error, Click Retry</string>
+    <string name="empty_no_data">There is no data, Click Retry</string>
+
+    <string name="voice_commands">Alexa &#038; Google Assistant\nVoice Commands</string>
+    <string name="voice_commands_title">Voice Commands</string>
+    <string name="voice_comands_note">List of compatible devices:</string>
+    <string name="voice_comands_note_content">Want to know which voice commands your product supports? Please click your product to view.</string>
+    <string name="google_platfrom">Google Assiatant</string>
+    <string name="alexa_platfrom">Alexa</string>
+    <string name="alexa_no_connect">You haven\'t connected to the Alexa, Click to connect to Alexa now!</string>
+    <string name="fm_platfrom_tips">Choose a name for your device. In the voice command examples, the name of the device is &quot;%s.&quot;</string>
+</resources>
