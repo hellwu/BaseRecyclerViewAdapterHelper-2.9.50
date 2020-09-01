@@ -16,7 +16,7 @@ public class VoiceCommandNode extends AbstractExpandableItem<VoiceCmdSynonymNode
 
     @Override
     public int getLevel() {
-        return 2;
+        return 1;
     }
 
     @Override

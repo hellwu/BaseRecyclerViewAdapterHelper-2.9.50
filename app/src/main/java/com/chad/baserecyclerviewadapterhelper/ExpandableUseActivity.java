@@ -54,7 +54,7 @@ public class ExpandableUseActivity extends BaseActivity {
 
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.setAdapter(adapter);
-        adapter.expandAll();
+//        adapter.expandAll();
     }
 
     private ArrayList<MultiItemEntity> generateData() {
@@ -68,6 +68,7 @@ public class ExpandableUseActivity extends BaseActivity {
         ArrayList<MultiItemEntity> res = new ArrayList<>();
         for (int i = 0; i < lv0Count; i++) {
             Level0Item lv0 = new Level0Item("This is " + i + "th item in Level 0", "subtitle of " + i);
+            lv0.setExpanded(false);
             for (int j = 0; j < lv1Count; j++) {
                 Level1Item lv1 = new Level1Item("Level 1 item: " + j, "(no animation)");
                 for (int k = 0; k < personCount; k++) {

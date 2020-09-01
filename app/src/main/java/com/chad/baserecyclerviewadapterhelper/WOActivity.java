@@ -2,6 +2,7 @@ package com.chad.baserecyclerviewadapterhelper;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,24 +45,24 @@ public class WOActivity extends BaseActivity {
         VoiceCmdSynonymNode node110 = new VoiceCmdSynonymNode("Open/Close the air purifie", true);
 
         VoiceCmdSynonymNode node112 = new VoiceCmdSynonymNode("Open/Close this", true);
-        node112.setEnd(true);
+        node112.setEnd(false);
         node112.setEndCapability(true);
 
         node11.addSubItem(node110);
         node11.addSubItem(node112);
         node11.setEnd(true);
-        node11.setExpanded(false);
+
         node1.addSubItem(node11);
         VoiceCommandNode node12 = new VoiceCommandNode("Open/Close the air purifier", true);
         node1.addSubItem(node12);
 
-        CapabilityNode node2 = new CapabilityNode("Change the mode, you can say:", true);
-        VoiceCommandNode node21 = new VoiceCommandNode("Set air purifier mode to auto", true);
-        VoiceCommandNode node22 = new VoiceCommandNode("Set air purifier mode to manual", true);
-        VoiceCommandNode node23 = new VoiceCommandNode("Set air purifier mode to sleep", true);
+        CapabilityNode node2 = new CapabilityNode("Change the mode, you can say:", false);
+        VoiceCommandNode node21 = new VoiceCommandNode("Set air purifier mode to auto", false);
+        VoiceCommandNode node22 = new VoiceCommandNode("Set air purifier mode to manual", false);
+        VoiceCommandNode node23 = new VoiceCommandNode("Set air purifier mode to sleep", false);
         node23.setEnd(true);
         node2.addSubItem(node21);
-        node2.addSubItem(node22);
+//        node2.addSubItem(node22);
         node2.addSubItem(node23);
 
 
@@ -69,8 +70,8 @@ public class WOActivity extends BaseActivity {
         CapabilityNoteNode node_note2 = new CapabilityNoteNode("Note: the range supported 30%-80%");
 
 
-        node1.setExpanded(true);
-//        node1.addSubItem(node_note1);
+//        node1.setExpanded(true);
+        node1.addSubItem(node_note1);
 //        node2.addSubItem(node_note2);
 
         datas.add(node1);
@@ -79,15 +80,14 @@ public class WOActivity extends BaseActivity {
 //        datas.add(node_note1);
 
         datas.add(node2);
-        datas.add(node21);
-        datas.add(node22);
-        datas.add(node23);
+//        datas.add(node21);
+//        datas.add(node22);
+//        datas.add(node23);
 //        datas.add(node_note2);
 
 
         mDapter = new VoiceCapabilityAdapter(datas);
-        mDapter.expandAll();
-//        View headerView = initHeaderView("Air Purifier", false);
+        View headerView = initHeaderView("Air Purifier", false);
 //        mDapter.addHeaderView(headerView);
 
         mDapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
@@ -107,8 +107,10 @@ public class WOActivity extends BaseActivity {
             }
         });
 
-
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mDapter);
+        mDapter.expandAll();
+//        mDapter.expand(0);
     }
 
 

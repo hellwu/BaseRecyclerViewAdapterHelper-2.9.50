@@ -3,14 +3,13 @@ package com.chad.baserecyclerviewadapterhelper.voicecontrol.adapter;
 import com.chad.library.adapter.base.entity.AbstractExpandableItem;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
-public class CapabilityNode extends AbstractExpandableItem<VoiceCommandNode> implements MultiItemEntity {
+public class CapabilityNode extends AbstractExpandableItem<MultiItemEntity> implements MultiItemEntity {
     private String description;
     private boolean isHaveNote;
 
     public CapabilityNode(String description, boolean isHaveNote) {
         this.description = description;
         this.isHaveNote = isHaveNote;
-        this.mExpandable = true;
     }
 
     @Override
@@ -36,6 +35,6 @@ public class CapabilityNode extends AbstractExpandableItem<VoiceCommandNode> imp
 
     @Override
     public int getLevel() {
-        return 1;
+        return 0;
     }
 }

@@ -53,16 +53,24 @@ public class VoiceCapabilityAdapter extends BaseMultiItemQuickAdapter<MultiItemE
                             baseViewHolder.setBackgroundRes(R.id.cl_item_cmd_head, R.drawable.shape_voice_cmd_item_up);
                     }
                     else {
-                        baseViewHolder.setGone(R.id.cl_item_cmd_end, true);
-                        baseViewHolder.setGone(R.id.cl_item_cmd, false);
-                        baseViewHolder.setGone(R.id.cl_item_cmd_head, false);
+                        if(vcNode.isEnd() && (!vcNode.isHaveNote())) {
+                            baseViewHolder.setGone(R.id.cl_item_cmd_end, true);
+                            baseViewHolder.setGone(R.id.cl_item_cmd, false);
+                            baseViewHolder.setGone(R.id.cl_item_cmd_head, false);
 
-                        baseViewHolder.setText(R.id.tv_cmd_voice_end, vcNode.getTitle());
-                        baseViewHolder.setBackgroundRes(R.id.cl_item_cmd_end, R.drawable.shape_voice_cmd_item);
-                        if(vcNode.isHaveNote())
-                            baseViewHolder.setBackgroundRes(R.id.ll_voice_cmd, R.color.white);
-                        else
+                            baseViewHolder.setText(R.id.tv_cmd_voice_end, vcNode.getTitle());
                             baseViewHolder.setBackgroundRes(R.id.ll_voice_cmd, R.drawable.shape_voicecontrol_item_bg_down);
+                            baseViewHolder.setBackgroundRes(R.id.cl_item_cmd_end, R.drawable.shape_voice_cmd_item);
+                        }
+                        else {
+                            baseViewHolder.setGone(R.id.cl_item_cmd_end, false);
+                            baseViewHolder.setGone(R.id.cl_item_cmd, true);
+                            baseViewHolder.setGone(R.id.cl_item_cmd_head, false);
+
+                            baseViewHolder.setText(R.id.tv_cmd_voice, vcNode.getTitle());
+                            baseViewHolder.setBackgroundRes(R.id.cl_item_cmd, R.drawable.shape_voice_cmd_item);
+                            baseViewHolder.setBackgroundRes(R.id.ll_voice_cmd, R.color.white);
+                        }
                     }
 
 
@@ -79,7 +87,7 @@ public class VoiceCapabilityAdapter extends BaseMultiItemQuickAdapter<MultiItemE
                         baseViewHolder.setGone(R.id.bt_expand_end, false);
 
                         baseViewHolder.setText(R.id.tv_cmd_voice_end, vcNode.getTitle());
-                        baseViewHolder.setBackgroundRes(R.id.ll_voice_cmd, R.drawable.shape_voicecontrol_item_bg);
+                        baseViewHolder.setBackgroundRes(R.id.ll_voice_cmd, R.drawable.shape_voicecontrol_item_bg_down);
                         baseViewHolder.setBackgroundRes(R.id.cl_item_cmd_end, R.drawable.shape_voice_cmd_item);
                     }
                     else {
@@ -112,7 +120,7 @@ public class VoiceCapabilityAdapter extends BaseMultiItemQuickAdapter<MultiItemE
                 VoiceCmdSynonymNode vsNode = ((VoiceCmdSynonymNode) item);
 
 
-                if(vsNode.isEnd()) {
+                if(vsNode.isEnd() && (!vsNode.isHaveNoet())) {
                     baseViewHolder.setGone(R.id.cl_item_cmd_end, true);
                     baseViewHolder.setGone(R.id.cl_item_cmd, false);
                     baseViewHolder.setGone(R.id.bt_expand_end, false);
@@ -120,11 +128,15 @@ public class VoiceCapabilityAdapter extends BaseMultiItemQuickAdapter<MultiItemE
                     baseViewHolder.setText(R.id.tv_cmd_voice_end, vsNode.getTitle());
                     baseViewHolder.setBackgroundRes(R.id.cl_item_cmd_end, R.drawable.shape_voice_cmd_item_down);
                     baseViewHolder.setBackgroundRes(R.id.ll_voice_cmd, R.drawable.shape_voicecontrol_item_bg_down);
+                }
+                else if(vsNode.isEndCapability() && (!vsNode.isEnd())) {
+                    baseViewHolder.setGone(R.id.cl_item_cmd_end, false);
+                    baseViewHolder.setGone(R.id.cl_item_cmd, true);
+                    baseViewHolder.setGone(R.id.bt_expand, false);
 
-                    if(vsNode.isHaveNoet())
-                        baseViewHolder.setBackgroundRes(R.id.ll_voice_cmd, R.color.white);
-                    else
-                        baseViewHolder.setBackgroundRes(R.id.ll_voice_cmd, R.drawable.shape_voicecontrol_item_bg_down);
+                    baseViewHolder.setText(R.id.tv_cmd_voice, vsNode.getTitle());
+                    baseViewHolder.setBackgroundRes(R.id.cl_item_cmd, R.drawable.shape_voice_cmd_item_down);
+                    baseViewHolder.setBackgroundRes(R.id.ll_voice_cmd, R.color.white);
                 }
                 else {
                     baseViewHolder.setGone(R.id.cl_item_cmd_end, false);
