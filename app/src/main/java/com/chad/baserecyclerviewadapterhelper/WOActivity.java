@@ -20,6 +20,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WOActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
@@ -52,9 +53,11 @@ public class WOActivity extends BaseActivity {
         node11.addSubItem(node112);
         node11.setEnd(true);
 
+
         node1.addSubItem(node11);
         VoiceCommandNode node12 = new VoiceCommandNode("Open/Close the air purifier", true);
         node1.addSubItem(node12);
+
 
         CapabilityNode node2 = new CapabilityNode("Change the mode, you can say:", false);
         VoiceCommandNode node21 = new VoiceCommandNode("Set air purifier mode to auto", false);
@@ -88,7 +91,7 @@ public class WOActivity extends BaseActivity {
 
         mDapter = new VoiceCapabilityAdapter(datas);
         View headerView = initHeaderView("Air Purifier", false);
-//        mDapter.addHeaderView(headerView);
+        mDapter.addHeaderView(headerView);
 
         mDapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
@@ -96,11 +99,11 @@ public class WOActivity extends BaseActivity {
                 if (datas.get(position) instanceof VoiceCommandNode) {
                     VoiceCommandNode node = (VoiceCommandNode) datas.get(position);
                     if(node.isExpanded()) {
-                        int count = mDapter.collapse(position);
+                        int count = mDapter.collapse(position + 1);
                         Log.i("tag", "collapse count = "+count);
                     }
                     else {
-                        int count = mDapter.expand(position);
+                        int count = mDapter.expand(position + 1);
                         Log.i("tag", "expand count = "+count);
                     }
                 }
@@ -109,10 +112,35 @@ public class WOActivity extends BaseActivity {
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mDapter);
-        mDapter.expandAll();
-//        mDapter.expand(0);
+
+        collapseAllCapabilityNode();
+//        mDapter.expandAll();
+//        mDapter.expand(1);
+//        mDapter.expand(5);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        collapseAllCapabilityNode();
+    }
+
+    private void collapseAllCapabilityNode() {
+        List<MultiItemEntity> data = new ArrayList(mDapter.getData());
+        int pos = 1;
+
+        if(data != null && data.size() != 0) {
+            CapabilityNode node;
+            for(MultiItemEntity entity : data) {
+                if(entity instanceof CapabilityNode) {
+                    node = (CapabilityNode) entity;
+                    mDapter.expand(pos);
+                    pos += node.getSubItems().size() + 1;
+                }
+            }
+            mDapter.notifyDataSetChanged();
+        }
+    }
 
     private View initHeaderView(String modelName, boolean isConnect) {
         View headerView = LayoutInflater.from(this).inflate(R.layout.item_voicedetail_header, null);

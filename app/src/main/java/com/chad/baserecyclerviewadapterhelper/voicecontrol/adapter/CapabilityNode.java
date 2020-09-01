@@ -3,7 +3,7 @@ package com.chad.baserecyclerviewadapterhelper.voicecontrol.adapter;
 import com.chad.library.adapter.base.entity.AbstractExpandableItem;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
-public class CapabilityNode extends AbstractExpandableItem<MultiItemEntity> implements MultiItemEntity {
+public class CapabilityNode extends AbstractExpandableItem<MultiItemEntity> implements MultiItemEntity, Cloneable{
     private String description;
     private boolean isHaveNote;
 
