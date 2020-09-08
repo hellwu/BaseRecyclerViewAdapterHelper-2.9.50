@@ -11,4 +11,6 @@
     <string name="alexa_platfrom">Alexa</string>
     <string name="alexa_no_connect">You haven\'t connected to the Alexa, Click to connect to Alexa now!</string>
     <string name="fm_platfrom_tips">Choose a name for your device. In the voice command examples, the name of the device is &quot;%s.&quot;</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

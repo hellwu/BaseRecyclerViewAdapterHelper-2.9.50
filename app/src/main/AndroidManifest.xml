@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chad.baserecyclerviewadapterhelper">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -11,7 +9,8 @@
         android:label="@string/brvah_app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WOActivity"></activity>
+        <activity android:name=".MyTestActivity"></activity>
+        <activity android:name=".WOActivity" />
         <activity android:name=".PullToRefreshUseActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
@@ -40,5 +39,7 @@
         <activity android:name=".SectionMultipleItemUseActivity" />
         <activity android:name=".DiffUtilActivity" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

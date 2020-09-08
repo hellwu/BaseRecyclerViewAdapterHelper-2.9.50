@@ -18,19 +18,18 @@ import com.chad.baserecyclerviewadapterhelper.voicecontrol.adapter.VoiceCmdSynon
 import com.chad.baserecyclerviewadapterhelper.voicecontrol.adapter.VoiceCommandNode;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.flyco.tablayout.SlidingTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WOActivity extends BaseActivity {
+public class WOActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private VoiceCapabilityAdapter mDapter;
-
+    SlidingTabLayout stl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setBackBtn();
-        setTitle("WO Activity");
         setContentView(R.layout.activity_w_o);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.rv);
@@ -117,6 +116,7 @@ public class WOActivity extends BaseActivity {
 //        mDapter.expandAll();
 //        mDapter.expand(1);
 //        mDapter.expand(5);
+
     }
 
     @Override
